@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoredProcedureDBModelStoreContainer" CdmEntityContainer="StoredProcedureDBEntities">
+    <EntitySetMapping Name="PilotTasks">
+      <EntityTypeMapping TypeName="StoredProcedureDBModel.PilotTask">
+        <MappingFragment StoreEntitySet="PilotTasks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
+          <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+          <ScalarProperty Name="TaskDiscription" ColumnName="TaskDiscription" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="StoredProcedureDBModel.PilotTask">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="StoredProcedureDBModel.Store.PilotTasks_Insert">
+            <ScalarProperty Name="Profile_ID" ParameterName="Profile_ID" />
+            <ScalarProperty Name="Status" ParameterName="Status" />
+            <ScalarProperty Name="StartTime" ParameterName="StartTime" />
+            <ScalarProperty Name="TaskDiscription" ParameterName="TaskDiscription" />
+            <ScalarProperty Name="TaskName" ParameterName="TaskName" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="StoredProcedureDBModel.Store.PilotTasks_Update">
+            <ScalarProperty Name="Profile_ID" ParameterName="Profile_ID" Version="Current" />
+            <ScalarProperty Name="Status" ParameterName="Status" Version="Current" />
+            <ScalarProperty Name="StartTime" ParameterName="StartTime" Version="Current" />
+            <ScalarProperty Name="TaskDiscription" ParameterName="TaskDiscription" Version="Current" />
+            <ScalarProperty Name="TaskName" ParameterName="TaskName" Version="Current" />
+            <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="StoredProcedureDBModel.Store.PilotTasks_Delete">
+            <ScalarProperty Name="Id" ParameterName="Id" />
+          </DeleteFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="StoredProcedureDBModel.Profile">
+        <MappingFragment StoreEntitySet="Profiles">
+          <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="StoredProcedureDBModel.Profile">
+        <ModificationFunctionMapping>
+          <UpdateFunction FunctionName="StoredProcedureDBModel.Store.Profiles_Update">
+            <ScalarProperty Name="Email_ID" ParameterName="Email_ID" Version="Current" />
+            <ScalarProperty Name="PhoneNumber" ParameterName="PhoneNumber" Version="Current" />
+            <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" Version="Current" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" Version="Current" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" Version="Current" />
+            <ScalarProperty Name="Profile_ID" ParameterName="Profile_ID" Version="Current" />
+          </UpdateFunction>
+          <DeleteFunction FunctionName="StoredProcedureDBModel.Store.Profiles_Delete">
+            <ScalarProperty Name="Profile_ID" ParameterName="Profile_ID" />
+          </DeleteFunction>
+          <InsertFunction FunctionName="StoredProcedureDBModel.Store.Profiles_Insert">
+            <ScalarProperty Name="Email_ID" ParameterName="Email_ID" />
+            <ScalarProperty Name="PhoneNumber" ParameterName="PhoneNumber" />
+            <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" />
+            <ScalarProperty Name="LastName" ParameterName="LastName" />
+            <ScalarProperty Name="FirstName" ParameterName="FirstName" />
+            <ScalarProperty Name="Profile_ID" ParameterName="Profile_ID" />
+          </InsertFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PilotTasks_Delete" FunctionName="StoredProcedureDBModel.Store.PilotTasks_Delete" />
+    <FunctionImportMapping FunctionImportName="PilotTasks_Insert" FunctionName="StoredProcedureDBModel.Store.PilotTasks_Insert" />
+    <FunctionImportMapping FunctionImportName="PilotTasks_Update" FunctionName="StoredProcedureDBModel.Store.PilotTasks_Update" />
+    <FunctionImportMapping FunctionImportName="Profiles_Delete" FunctionName="StoredProcedureDBModel.Store.Profiles_Delete" />
+    <FunctionImportMapping FunctionImportName="Profiles_Insert" FunctionName="StoredProcedureDBModel.Store.Profiles_Insert" />
+    <FunctionImportMapping FunctionImportName="Profiles_Update" FunctionName="StoredProcedureDBModel.Store.Profiles_Update" />
+    <FunctionImportMapping FunctionImportName="GetProfilesById" FunctionName="StoredProcedureDBModel.Store.GetProfilesById" />
+    <FunctionImportMapping FunctionImportName="sp_GetAll" FunctionName="StoredProcedureDBModel.Store.sp_GetAll" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoredProcedureDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PilotTasks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Profile_ID" Type="int" />
+    <Property Name="TaskName" Type="nvarchar(max)" />
+    <Property Name="TaskDiscription" Type="nvarchar(max)" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="Profile_ID" />
+    </Key>
+    <Property Name="Profile_ID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="Email_ID" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_PilotTasks_Profiles">
+    <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+    <End Role="PilotTasks" Type="Self.PilotTasks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="Profile_ID" />
+      </Principal>
+      <Dependent Role="PilotTasks">
+        <PropertyRef Name="Profile_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetProfilesById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Profile_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PilotTasks_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PilotTasks_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TaskName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TaskDiscription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="StartTime" Type="datetime" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="Profile_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PilotTasks_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="TaskName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TaskDiscription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="StartTime" Type="datetime" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="Profile_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Profiles_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Profile_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Profiles_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Profile_ID" Type="int" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Email_ID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Profiles_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Profile_ID" Type="int" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Email_ID" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="StoredProcedureDBModelStoreContainer">
+    <EntitySet Name="PilotTasks" EntityType="Self.PilotTasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PilotTasks_Profiles" Association="Self.FK_PilotTasks_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="PilotTasks" EntitySet="PilotTasks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

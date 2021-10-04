@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoredProcedureDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PilotTask">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Profile_ID" Type="Int32" />
+    <Property Name="TaskName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TaskDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_PilotTasks_Profiles" FromRole="PilotTasks" ToRole="Profiles" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="Profile_ID" />
+    </Key>
+    <Property Name="Profile_ID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Email_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PilotTasks" Relationship="Self.FK_PilotTasks_Profiles" FromRole="Profiles" ToRole="PilotTasks" />
+  </EntityType>
+  <Association Name="FK_PilotTasks_Profiles">
+    <End Role="Profiles" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="PilotTasks" Type="Self.PilotTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="Profile_ID" />
+      </Principal>
+      <Dependent Role="PilotTasks">
+        <PropertyRef Name="Profile_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StoredProcedureDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PilotTasks" EntityType="Self.PilotTask" />
+    <EntitySet Name="Profiles" EntityType="Self.Profile" />
+    <AssociationSet Name="FK_PilotTasks_Profiles" Association="Self.FK_PilotTasks_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="PilotTasks" EntitySet="PilotTasks" />
+    </AssociationSet>
+    <FunctionImport Name="PilotTasks_Delete">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PilotTasks_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="TaskName" Mode="In" Type="String" />
+      <Parameter Name="TaskDiscription" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="Profile_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PilotTasks_Update">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="TaskName" Mode="In" Type="String" />
+      <Parameter Name="TaskDiscription" Mode="In" Type="String" />
+      <Parameter Name="StartTime" Mode="In" Type="DateTime" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="Profile_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Profiles_Delete">
+      <Parameter Name="Profile_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Profiles_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="Profile_ID" Mode="In" Type="Int32" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="Email_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Profiles_Update">
+      <Parameter Name="Profile_ID" Mode="In" Type="Int32" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+      <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="Email_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProfilesById" EntitySet="Profiles" ReturnType="Collection(StoredProcedureDBModel.Profile)">
+      <Parameter Name="Profile_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetAll" EntitySet="Profiles" ReturnType="Collection(StoredProcedureDBModel.Profile)" />
+  </EntityContainer>
+  <ComplexType Name="sp_GetAll_Result">
+    <Property Type="Int32" Name="Profile_ID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="true" />
+    <Property Type="DateTime" Name="DateOfBirth" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Email_ID" Nullable="true" />
+    <Property Type="String" Name="LastName" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+  </ComplexType>
+</Schema>

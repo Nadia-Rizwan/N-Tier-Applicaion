@@ -1,0 +1,11 @@
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\BOL.dll.config
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\BOL.dll
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\BOL.pdb
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\EntityFramework.dll
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\EntityFramework.xml
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\obj\Debug\BOL.csproj.CoreCompileInputs.cache
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\obj\Debug\BOL.csproj.CopyComplete
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\obj\Debug\BOL.dll
+C:\Users\RIZWAN\source\repos\StoredProcedures\BOL\obj\Debug\BOL.pdb
